@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
+import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,14 +16,15 @@ import android.widget.TextView;
 import java.io.InputStream;
 import java.util.List;
 
-public class BookAdapter extends ArrayAdapter<Book> {
+class BookAdapter extends ArrayAdapter<Book> {
 
-    public BookAdapter(Context context, List<Book> books) {
+    BookAdapter(Context context, List<Book> books) {
         super(context, 0, books);
     }
 
+    @NonNull
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(int position, View convertView, @NonNull ViewGroup parent) {
 
         View listItemView = convertView;
         if (listItemView == null) {
@@ -43,7 +45,7 @@ public class BookAdapter extends ArrayAdapter<Book> {
         authorsView.setText(currentBook.getAuthors());
         descriptionView.setText(currentBook.getDescription());
 
-        if (imageView.equals("")) {
+        if (currentBook.getImageUrl().equals("")) {
             imageView.setImageResource(R.drawable.ic_no_preview);
         } else {
             new DownloadImageTask(imageView).execute(currentBook.getImageUrl());
@@ -55,9 +57,9 @@ public class BookAdapter extends ArrayAdapter<Book> {
 
     // this function grabbed from Stack Overflow. Can't remember where...
     private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
-        ImageView bmImage;
+        final ImageView bmImage;
 
-        public DownloadImageTask(ImageView bmImage) {
+        DownloadImageTask(ImageView bmImage) {
             this.bmImage = bmImage;
         }
 

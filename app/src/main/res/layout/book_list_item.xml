@@ -6,69 +6,64 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:layout_editor_absoluteY="81dp"
-    tools:layout_editor_absoluteX="0dp">
+    tools:layout_editor_absoluteX="0dp"
+    tools:layout_editor_absoluteY="81dp">
 
     <ImageView
-        tools:src="@drawable/dummy_image"
+        android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/imageView"
-        android:layout_marginLeft="@dimen/eight_dp"
-        app:layout_constraintLeft_toLeftOf="@+id/title"
+        android:layout_marginStart="@dimen/eight_dp"
         android:layout_marginTop="@dimen/eight_dp"
+        android:contentDescription="@string/book_cover_thumbnail"
+        app:layout_constraintLeft_toLeftOf="@+id/title"
         app:layout_constraintTop_toBottomOf="@+id/subtitle"
-        android:layout_marginStart="@dimen/eight_dp"/>
+        tools:src="@drawable/dummy_image"/>
 
     <TextView
         android:id="@+id/title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/sixteen_dp"
+        android:layout_marginStart="@dimen/sixteen_dp"
+        android:layout_marginTop="@dimen/sixteen_dp"
         android:fontFamily="sans-serif-smallcaps"
         android:textColor="@color/colorPrimaryDark"
         android:textStyle="bold"
-        tools:text="@string/dummy_title"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="@dimen/sixteen_dp"
-        android:layout_marginLeft="@dimen/sixteen_dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginRight="@dimen/sixteen_dp"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginStart="@dimen/sixteen_dp"
-        android:layout_marginEnd="@dimen/sixteen_dp"/>
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@string/dummy_title"/>
 
     <TextView
         android:id="@+id/subtitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/eight_dp"
-        android:layout_marginRight="@dimen/sixteen_dp"
+        android:layout_marginEnd="@dimen/sixteen_dp"
+        android:layout_marginStart="@dimen/eight_dp"
         android:layout_marginTop="@dimen/eight_dp"
         android:textColor="@color/colorPrimary"
         app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="@+id/title"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title"
-        tools:text="@string/dummy_subtitle"
-        app:layout_constraintLeft_toLeftOf="@+id/title"
-        android:layout_marginStart="@dimen/eight_dp"
-        android:layout_marginEnd="@dimen/sixteen_dp"/>
+        tools:text="@string/dummy_subtitle"/>
 
     <TextView
         android:id="@+id/authors"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        tools:text="@string/dummy_authors"
-        android:layout_marginRight="6dp"
-        app:layout_constraintRight_toRightOf="@+id/description"
+        android:layout_marginEnd="@dimen/eight_dp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView"
-        android:layout_marginEnd="6dp"/>
+        app:layout_constraintRight_toRightOf="@+id/description"
+        tools:text="@string/dummy_authors"/>
 
     <TextView
         android:id="@+id/description"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="@dimen/eight_dp"
-        android:layout_marginLeft="13dp"
+        android:layout_marginStart="13dp"
         android:ellipsize="end"
         android:fontFamily="casualpuppy"
         android:maxLines="2"
@@ -80,14 +75,13 @@
         app:layout_constraintRight_toRightOf="@+id/subtitle"
         app:layout_constraintTop_toTopOf="@+id/imageView"
         app:layout_constraintVertical_bias="0.0"
-        tools:text="@string/dummy_description"
-        android:layout_marginStart="13dp"/>
+        tools:text="@string/dummy_description"/>
 
     <View
         android:layout_width="fill_parent"
         android:layout_height="1dp"
-        android:layout_marginLeft="24dp"
-        android:layout_marginRight="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="8dp"
         android:background="@color/colorAccent"
         app:layout_constraintLeft_toLeftOf="parent"

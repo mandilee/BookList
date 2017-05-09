@@ -1,17 +1,15 @@
 package uk.co.mandilee.booklist;
 
-import android.content.Context;
 import android.content.AsyncTaskLoader;
+import android.content.Context;
 
 import java.util.List;
 
-public class BookLoader extends AsyncTaskLoader<List<Book>> {
+class BookLoader extends AsyncTaskLoader<List<Book>> {
 
-    private static final String LOG_TAG = BookLoader.class.getName();
+    final private String mUrl;
 
-    private String mUrl;
-
-    public BookLoader(Context context, String url) {
+    BookLoader(Context context, String url) {
         super(context);
         mUrl = url;
     }
@@ -27,7 +25,6 @@ public class BookLoader extends AsyncTaskLoader<List<Book>> {
             return null;
         }
 
-        List<Book> books = HttpRequest.fetchBookData(mUrl);
-        return books;
+        return HttpRequest.fetchBookData(mUrl);
     }
 }

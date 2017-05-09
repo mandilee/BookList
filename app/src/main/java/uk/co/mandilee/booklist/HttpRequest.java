@@ -18,11 +18,7 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by manda on 2017-05-09.
- */
-
-public final class HttpRequest {
+final class HttpRequest {
 
     private static final String LOG_TAG = HttpRequest.class.getSimpleName();
 
@@ -30,7 +26,7 @@ public final class HttpRequest {
         // intentionally blank - shouldn't be called!
     }
 
-    public static List<Book> fetchBookData(String requestUrl) {
+    static List<Book> fetchBookData(String requestUrl) {
         URL url = createUrl(requestUrl);
 
         String jsonResponse = null;
@@ -40,9 +36,7 @@ public final class HttpRequest {
             Log.e(LOG_TAG, "Problem making the HTTP request.", e);
         }
 
-        List<Book> books = extractFeatureFromJson(jsonResponse);
-
-        return books;
+        return extractFeatureFromJson(jsonResponse);
     }
 
     private static URL createUrl(String stringUrl) {
@@ -62,28 +56,28 @@ public final class HttpRequest {
             return jsonResponse;
         }
 
-        HttpURLConnection urlConnection = null;
+        HttpURLConnection connection = null;
         InputStream inputStream = null;
         try {
-            urlConnection = (HttpURLConnection) url.openConnection();
-            urlConnection.setReadTimeout(10000 /* milliseconds */);
-            urlConnection.setConnectTimeout(15000 /* milliseconds */);
-            urlConnection.setRequestMethod("GET");
-            urlConnection.connect();
+            connection = (HttpURLConnection) url.openConnection();
+            connection.setReadTimeout(10000 /* milliseconds */);
+            connection.setConnectTimeout(15000 /* milliseconds */);
+            connection.setRequestMethod("GET");
+            connection.connect();
 
             // If the request was successful (response code 200),
             // then read the input stream and parse the response.
-            if (urlConnection.getResponseCode() == 200) {
-                inputStream = urlConnection.getInputStream();
+            if (connection.getResponseCode() == 200) {
+                inputStream = connection.getInputStream();
                 jsonResponse = readFromStream(inputStream);
             } else {
-                Log.e(LOG_TAG, "Error response code: " + urlConnection.getResponseCode());
+                Log.e(LOG_TAG, "Error response code: " + connection.getResponseCode());
             }
         } catch (IOException e) {
             Log.e(LOG_TAG, "Problem retrieving the book JSON results.", e);
         } finally {
-            if (urlConnection != null) {
-                urlConnection.disconnect();
+            if (connection != null) {
+                connection.disconnect();
             }
             if (inputStream != null) {
                 inputStream.close();
@@ -119,15 +113,14 @@ public final class HttpRequest {
             JSONArray bookArray = baseJsonResponse.getJSONArray("items");
 
             for (int i = 0; i < bookArray.length(); i++) {
-                String title = "",
-                        subtitle = "",
+                String subtitle = "",
                         authors = "",
                         description = "";
 
                 JSONObject currentBook = bookArray.getJSONObject(i);
                 JSONObject properties = currentBook.getJSONObject("volumeInfo");
 
-                title = properties.getString("title");
+                String title = properties.getString("title");
 
                 try {
                     subtitle = properties.getString("subtitle");

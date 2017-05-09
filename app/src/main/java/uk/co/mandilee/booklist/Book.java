@@ -1,13 +1,13 @@
 package uk.co.mandilee.booklist;
 
-public class Book {
-    private String mTitle;
-    private String mSubtitle;
-    private String mAuthors;
-    private String mDescription;
-    private String mImageUrl;
+class Book {
+    private final String mTitle,
+            mSubtitle,
+            mAuthors,
+            mDescription,
+            mImageUrl;
 
-    public Book(String title, String subtitle, String authors, String description, String imageUrl) {
+    Book(String title, String subtitle, String authors, String description, String imageUrl) {
         mTitle = title;
         mSubtitle = subtitle;
         mAuthors = authors;
@@ -15,23 +15,23 @@ public class Book {
         mImageUrl = imageUrl;
     }
 
-    public String getTitle() {
+    String getTitle() {
         return mTitle;
     }
 
-    public String getSubtitle() {
+    String getSubtitle() {
         return mSubtitle;
     }
 
-    public String getAuthors() {
+    String getAuthors() {
         return mAuthors;
     }
 
-    public String getDescription() {
+    String getDescription() {
         return mDescription;
     }
 
-    public String getImageUrl() {
+    String getImageUrl() {
         return mImageUrl;
     }
 }

@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
                 EditText searchFor = (EditText) findViewById(R.id.search_text);
                 String searchTerm = String.valueOf(searchFor.getText());
                 if (searchTerm.length() == 0) {
-
+                    Toast.makeText(getBaseContext(), "Please enter a search term.", Toast.LENGTH_SHORT).show();
                 } else {
                     Intent i = new Intent(MainActivity.this, BookActivity.class);//new BookActivity();
                     i.putExtra(SEARCH_TERM, searchTerm);
