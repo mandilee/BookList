@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">BookList</string>
+    <string name="search_hint">Search For Books</string>
+    <string name="search_button">Search</string>
+    <string name="dummy_title">Before and After Getting Your Puppy</string>
+    <string name="dummy_subtitle">The Positive Approach to Raising a Happy, Healthy, and Well-Behaved Dog</string>
+    <string name="dummy_authors">Ian Dunbar</string>
+    <string name="dummy_publish_date">2010-09-24</string>
+    <string name="dummy_description"><![CDATA[Before & After Getting Your Puppy is a simple, practical guide for anyone bringing a new puppy into the family...]]></string>
+
+    <string name="no_internet_connection">You don\'t appear to have an internet connection.</string>
+    <string name="no_books">No books found. Use a different search term and try again.</string>
+</resources>
