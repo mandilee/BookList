@@ -20,15 +20,19 @@ import java.util.List;
 public class BookActivity extends AppCompatActivity
         implements LoaderManager.LoaderCallbacks<List<Book>> {
 
-    private static final String LOG_TAG = BookActivity.class.getName();
-
-    private static final String USGS_REQUEST_URL = "https://www.googleapis.com/books/v1/volumes";
+    /**
+     * the request url
+     */
+    private static final String REQUEST_URL = "https://www.googleapis.com/books/v1/volumes";
 
     private static final int BOOK_LOADER_ID = 1;
 
     private BookAdapter mAdapter;
 
-    private TextView mEmptyStateTextView;
+    /**
+     * the text view for empty resultset or no internet
+     */
+    private TextView mNoResultsTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,8 +41,8 @@ public class BookActivity extends AppCompatActivity
 
         ListView bookListView = (ListView) findViewById(R.id.list);
 
-        mEmptyStateTextView = (TextView) findViewById(R.id.empty_view);
-        bookListView.setEmptyView(mEmptyStateTextView);
+        mNoResultsTextView = (TextView) findViewById(R.id.empty_view);
+        bookListView.setEmptyView(mNoResultsTextView);
 
         mAdapter = new BookAdapter(this, new ArrayList<Book>());
 
@@ -58,14 +62,14 @@ public class BookActivity extends AppCompatActivity
             View loadingIndicator = findViewById(R.id.progress_bar);
             loadingIndicator.setVisibility(View.GONE);
 
-            mEmptyStateTextView.setText(R.string.no_internet_connection);
+            mNoResultsTextView.setText(R.string.no_internet_connection);
         }
     }
 
     @Override
     public Loader<List<Book>> onCreateLoader(int i, Bundle bundle) {
 
-        Uri baseUri = Uri.parse(USGS_REQUEST_URL);
+        Uri baseUri = Uri.parse(REQUEST_URL);
         Uri.Builder uriBuilder = baseUri.buildUpon();
 
         Intent intent = getIntent();
@@ -81,7 +85,7 @@ public class BookActivity extends AppCompatActivity
         View loadingIndicator = findViewById(R.id.progress_bar);
         loadingIndicator.setVisibility(View.GONE);
 
-        mEmptyStateTextView.setText(R.string.no_books);
+        mNoResultsTextView.setText(R.string.no_books);
 
         mAdapter.clear();
 
